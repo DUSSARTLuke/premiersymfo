@@ -5,6 +5,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use \Doctrine\Persistence\ManagerRegistry;
+use \App\Entity\Employe;
 
 class PrincipalController extends AbstractController
 {
@@ -37,5 +39,14 @@ class PrincipalController extends AbstractController
          return $this->render('principal/info.html.twig', [
              "cd" => $cd, "genre" => $genre 
          ]);
+     }
+     
+     /**
+      * @Route("/employes", name="employes")
+      */
+     public function afficheEmployes(ManagerRegistry $doctrine){
+       $employes = $doctrine->getRepository(Employe::class)->findAll();
+       $titre = "Liste des employés";
+       return $this->render('principal/employes.html.twig', compact('titre', 'employes'));
      }
 }

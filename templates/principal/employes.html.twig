@@ -1,0 +1,26 @@
+{# empty Twig template #}
+{% extends "base.html.twig" %}
+{% block title %}
+    {{ titre }}
+{% endblock %}
+{% block body %}
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nom</th>
+          <th>Salaire</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for employe in employes %}
+            
+            <tr>
+              <td>{{ employe.id }}</td>
+              <td>{{ employe.nom }}</td>
+              <td>{{ employe.salaire }}</td>
+            </tr>
+            {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}
