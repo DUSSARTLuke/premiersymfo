@@ -1,0 +1,10 @@
+{# empty Twig template #}
+{% extends 'base.html.twig' %}
+
+{% block title  %}{{ parent() }}{% endblock %}
+{% block body %}
+  <p>{{ titre }}</p>
+  <p> Nom : {{ employe.nom }} </p>
+  <p> Salaire : {{ employe.salaire }} </p>
+  <p> Lieu : {{ employe.lieu.nom }} </p>
+{% endblock %}

@@ -1,0 +1,25 @@
+{# empty Twig template #}
+{% extends "base.html.twig" %}
+{% block title %}Coucou toi{% endblock %}
+{% block body %}
+  <p> Nom du lieu : {{ lieu.nom }}</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Salaire</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for employe in lieu.lesemployes %}
+
+        <tr>
+          <td>{{ employe.id }}</td>
+          <td>{{ employe.nom }}</td>
+          <td>{{ employe.salaire }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
