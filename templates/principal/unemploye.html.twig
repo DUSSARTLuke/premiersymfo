@@ -1,0 +1,11 @@
+{# empty Twig template #}
+{% extends "base.html.twig" %}
+
+{% block title %} Coucou n° {{ employe.id }} {% endblock %}
+
+{% block body %}
+    <h1>Employé n° {{ employe.id }}</h1>
+    <h2>Nom : {{ employe.nom }}</h2>
+    <h2>Salaire : {{ employe.salaire }}</h2>
+    <h2>nous somme le : {{ "now"|date("l d F H:i") }}</h2>
+{% endblock %}
