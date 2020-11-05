@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Entity;
 
 use App\Repository\EmployeRepository;
@@ -10,49 +9,61 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Employe
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $nom;
+  /**
+   * @ORM\Id
+   * @ORM\GeneratedValue
+   * @ORM\Column(type="integer")
+   */
+  private $id;
 
-    /**
-     * @ORM\Column(type="decimal", precision=9, scale=2)
-     */
-    private $salaire;
+  /**
+   * @ORM\Column(type="string", length=50)
+   */
+  private $nom;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+  /**
+   * @ORM\Column(type="decimal", precision=9, scale=2)
+   */
+  private $salaire;
 
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
+  /**
+   * @ORM\ManyToOne(targetEntity="Lieu", inversedBy="lesEmployes")
+   * @ORM\JoinColumn(name = "idLieu" , nullable=false)
+   */
+  private $lieu;
 
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
+  public function getId(): ?int
+  {
+    return $this->id;
+  }
 
-        return $this;
-    }
+  public function getNom(): ?string
+  {
+    return $this->nom;
+  }
 
-    public function getSalaire(): ?string
-    {
-        return $this->salaire;
-    }
+  public function setNom(string $nom): self
+  {
+    $this->nom = $nom;
 
-    public function setSalaire(string $salaire): self
-    {
-        $this->salaire = $salaire;
+    return $this;
+  }
 
-        return $this;
-    }
+  public function getSalaire(): ?string
+  {
+    return $this->salaire;
+  }
+
+  public function setSalaire(string $salaire): self
+  {
+    $this->salaire = $salaire;
+
+    return $this;
+  }
+
+  function getLieu()
+  {
+    return $this->lieu;
+  }
 }
