@@ -17,14 +17,14 @@ class ContactController extends AbstractController
 {
 
   /**
-     * @Route("/contact", name="contact")
+     * @Route("/contact", name="_success")
      */
     public function index()
     {
         return new Response($content = 'Vous vous êtes enregistré');
     }
   /**
-   * @Route("/contact", name="formContact")
+   * @Route("/creercontact", name="formContact")
    */
   public function formContact(Request $request, GestionContact $gestionContact)
   {
@@ -39,10 +39,10 @@ class ContactController extends AbstractController
       $contact->setDateHeureContact(new \DateTime());
       $gestionContact->creerContact($contact);
 
-      //$gestionContact->envoiMailContact($contact);
+      $gestionContact->envoiMailContact($contact);
 
 
-      return $this->redirectToRoute("contact");
+      return $this->redirectToRoute("contact_success");
     }
     return $this->render('contact/creerContact.html.twig', [
         'form' => $form->createView(),
