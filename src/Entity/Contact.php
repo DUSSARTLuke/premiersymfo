@@ -57,7 +57,7 @@ class Contact
         return $this->titre;
     }
 
-    public function setTitre(string $titre): self
+    public function setTitre      (string $titre): self
     {
         $this->titre = $titre;
 

@@ -15,21 +15,21 @@ use App\Repository\ProduitRepository;
  */
 class GestionContact {
 //documentation : https://swiftmailer.symfony.com/docs/sending.html
-   // private \Swift_Mailer $mail;
+    private \Swift_Mailer $mail;
     private Environment $environnementTwig;
     private ManagerRegistry $doctrine;
     private ContactRepository $repo;
-    //private ProduitRepository $produitRepo;
+    private ProduitRepository $produitRepo;
 
-    function __construct(Environment $environnementTwig, ManagerRegistry $doctrine, ContactRepository $repo) {
-        //$this->mail = $mail;
+    function __construct(\Swift_Mailer $mail, Environment $environnementTwig, ManagerRegistry $doctrine, ContactRepository $repo,ProduitRepository $ProduitRepo) {
+        $this->mail = $mail;
         $this->environnementTwig = $environnementTwig;
         $this->doctrine=$doctrine;
         $this->repo=$repo;
-        //$this->produitRepo=$ProduitRepo;
+        $this->produitRepo=$ProduitRepo;
     }
 
-    /*public function envoiMailContact(Contact $contact) {
+    public function envoiMailContact(Contact $contact) {
         //$titre = ($contact->getTitre() == 'M') ? ('Monsieur') : ('Madame');
         $message = (new \Swift_Message('Demande de renseignement'))
                 //->setFrom(['contact@benoitroche.fr'=> 'Benoît Roche Symfony'])
@@ -46,7 +46,7 @@ class GestionContact {
                 );
             $message->attach(\Swift_Attachment::fromPath('documents/presentation.pdf'));
         $this->mail->send($message);
-    }*/
+    }
     
     public function creerContact(Contact $contact):void{
         $em=$this->doctrine->getManager();
@@ -56,7 +56,7 @@ class GestionContact {
     }
     
     
-   /* public function envoiMailTous() {
+    public function envoiMailTous() {
         $contacts=$this->repo->findAll(); 
         $produits=$this->produitRepo->findAll();
         $message = (new \Swift_Message('Voyages en promo chez Roche'))
@@ -79,6 +79,6 @@ class GestionContact {
            $message->attach(\Swift_Attachment::fromPath('documents/presentation.pdf'));
         
         $this->mail->send($message);
-    }*/
+    }
     
 }
